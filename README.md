@@ -1,14 +1,15 @@
 simple flask app to display who is fronting from simplyplural in a 320x240 iframe, used on my personal website.
 
 how to deploy, i'd hope:
-1. declare the following environment variables
-   SP_API_TOKEN
-   SP_PRIVACY_BUCKET
-   SP_USERID
-   SP_ALLOWED_ORIGINS
+1. declare the following environment variables\
+   SP_API_TOKEN - api token from simplyplural (do not hardcode this, do not set to anything besides readonly, do not share)
+   SP_PRIVACY_BUCKET - privacy bucket **id** that you would like to display. get bucket ids by calling the api\
+   you can do this easily [here](https://docs.apparyllis.com/docs/api/get-all-members)\
+   SP_USERID - your userid, not username.\
+   SP_ALLOWED_ORIGINS - add all applicable website urls here to prevent cors issues.
+3. pip install -r requirements.txt\
+   *note: there may be an excess of requirements, i did not check this file.*
+4. run the server, or `python server.py`
 
-2. pip install -r requirements.txt
-   note: there are too many requirements because i use my pip install for other things and i am too greedy to clean it
-3. run the server, or `python server.py`
-
-it is setup to only expose the name, pronouns, and custom status as concisely as possible, while protecting the user id, bucket id, and api token. this app was inspired by fronters.cc but redesigned for personal use.
+it is setup to only expose the name, pronouns, and custom status as concisely as possible, while protecting the user id, bucket id, and api token.\
+this app was inspired by fronters.cc but redesigned for personal use.
