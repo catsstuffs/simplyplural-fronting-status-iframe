@@ -14,5 +14,5 @@ how to deploy, i'd hope:
    *note: there may be an excess of requirements, i did not check this file.*
 4. run the server, or `python server.py`
 
-it is setup to only expose the name, pronouns, and custom status as concisely as possible, while protecting the user id, bucket id, and api token.\
+it is setup to only expose the name, pronouns, and custom status as concisely as possible, while protecting the user id, bucket id, and api token. it also includes rate-limiting, though it may need to be removed depending on the configuration.\
 this app was inspired by fronters.cc but redesigned for personal use.
