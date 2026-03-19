@@ -1,5 +1,8 @@
 simple flask app to display who is fronting from simplyplural in a 320x240 iframe, used on my personal website.
 
+<img width="502" height="382" alt="image" src="https://github.com/user-attachments/assets/b786a76b-7407-4adc-a1f5-71a6b1d2a07d" />
+
+
 how to deploy, i'd hope:
 1. declare the following environment variables\
    SP_API_TOKEN - api token from simplyplural (do not hardcode this, do not set to anything besides readonly, do not share)\
