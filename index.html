@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>currently fronting</title>
+  <style>
+    * { box-sizing: border-box; }
+    
+body { 
+      font-family: verdana, sans-serif; 
+      padding: 10px; 
+      margin: 0; 
+      background: #000; 
+      color: #fff;
+      width: 320px; 
+      height: 240px; 
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #444 #000;
+    }
+
+    h1 { 
+      font-size: 1.1rem; 
+      margin: 0 0 10px 0; 
+      border-bottom: 1px solid #333;
+      padding-bottom: 8px;
+      color: #eee;
+      text-align: center;
+      width: 100%;       
+    }
+
+    ul { list-style: none; padding: 0; margin: 0; }
+
+    li { 
+      padding: 8px; 
+      border-radius: 4px; 
+      margin-bottom: 6px; 
+      background: #111; 
+      border: 1px solid #222;
+      display: flex; 
+      flex-direction: column; 
+    }
+
+    .top { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+    
+    .name { font-weight: 600; color: #fff; font-size: 0.9rem; }
+    
+    .pronouns { color: #aaa; font-size: 0.75rem; }
+    
+    .status { 
+      color: #ddd; 
+      margin-top: 4px; 
+      font-style: italic; 
+      font-size: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .empty { color: #666; font-style: normal; text-align: center; margin-top: 20px; }
+    
+    /* my cool as fuck error */
+    .error-msg { color: #ff5555; font-size: 0.8rem; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>currently fronting</h1>
+  <ul id="members"></ul>
+
+  <script>
+    async function loadFront(slug) {
+      const list = document.getElementById('members');
+      try {
+        const res = await fetch(`/${slug}`);
+        if (!res.ok) throw new Error(res.status);
+        
+        const data = await res.json();
+        list.innerHTML = '';
+
+        if (!Array.isArray(data) || data.length === 0) {
+          list.innerHTML = '<li class="empty">no public members are fronting.</li>';
+          return;
+        }
+
+        data.forEach(item => {
+          const li = document.createElement('li');
+
+          const top = document.createElement('div');
+          top.className = 'top';
+          
+          const name = document.createElement('div');
+          name.className = 'name';
+          name.textContent = item.name || 'Unknown';
+          
+          const pronouns = document.createElement('div');
+          pronouns.className = 'pronouns';
+          pronouns.textContent = item.pronouns ? `(${item.pronouns})` : '';
+
+          top.appendChild(name);
+          if (item.pronouns) top.appendChild(pronouns);
+
+          li.appendChild(top);
+
+          if (item.customStatus) {
+            const status = document.createElement('div');
+            status.className = 'status';
+            status.textContent = item.customStatus;
+            li.appendChild(status);
+          }
+
+          list.appendChild(li);
+        });
+      } catch (err) {
+        console.error(err);
+        list.innerHTML = `<li class="error-msg">catastrophic failure: ${err.message}</li>`;
+      }
+    }
+
+    loadFront('fronts');
+  </script>
+</body>
+</html>
