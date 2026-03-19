@@ -2,7 +2,7 @@ simple flask app to display who is fronting from simplyplural in a 320x240 ifram
 
 how to deploy, i'd hope:
 1. declare the following environment variables\
-   SP_API_TOKEN - api token from simplyplural (do not hardcode this, do not set to anything besides readonly, do not share)
+   SP_API_TOKEN - api token from simplyplural (do not hardcode this, do not set to anything besides readonly, do not share)\
    SP_PRIVACY_BUCKET - privacy bucket **id** that you would like to display. get bucket ids by calling the api\
    you can do this easily [here](https://docs.apparyllis.com/docs/api/get-all-members)\
    SP_USERID - your userid, not username.\
