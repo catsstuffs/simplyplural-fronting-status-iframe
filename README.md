@@ -12,7 +12,7 @@ how to deploy, i'd hope:
    SP_ALLOWED_ORIGINS - add all applicable website urls here to prevent cors issues.
 3. pip install -r requirements.txt\
    *note: there may be an excess of requirements, i did not check this file.*
-4. run the server, or `python server.py`
+4. run the server, or `python server.py` for quick testing.
 
 it is setup to only expose the name, pronouns, and custom status as concisely as possible, while protecting the user id, bucket id, and api token. it also includes rate-limiting, though it may need to be removed depending on the configuration.\
 this app was inspired by fronters.cc but redesigned for personal use.
